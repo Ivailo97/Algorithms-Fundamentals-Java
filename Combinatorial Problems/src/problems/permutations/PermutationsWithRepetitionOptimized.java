@@ -5,16 +5,12 @@ import base.Problem;
 import java.io.IOException;
 import java.util.Arrays;
 
-//FIXME
 public class PermutationsWithRepetitionOptimized implements Problem {
 
     @Override
     public void solve() throws IOException {
-
         int[] arr = {3, 5, 1, 5, 5};
-
         Arrays.sort(arr);
-
         permute(arr, 0, arr.length - 1);
     }
 
@@ -26,11 +22,11 @@ public class PermutationsWithRepetitionOptimized implements Problem {
                     swap(arr, left, right);
                     permute(arr, left + 1, end);
                 }
-                int firstElement = arr[left];
-                for (int i = left; i <= end - 1; i++) {
-                    arr[i] = arr[i + 1];
-                    arr[end] = firstElement;
-                }
+            }
+            int firstElement = arr[left];
+            for (int i = left; i <= end - 1; i++) {
+                arr[i] = arr[i + 1];
+                arr[end] = firstElement;
             }
         }
     }
