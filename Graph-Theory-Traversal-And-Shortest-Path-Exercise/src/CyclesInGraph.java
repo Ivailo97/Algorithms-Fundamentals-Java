@@ -7,7 +7,7 @@ public class CyclesInGraph {
 
     public static Map<String, List<String>> graph = new HashMap<>();
 
-    public static Set<String> visited = new LinkedHashSet<>();
+    public static Set<String> visited = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
 

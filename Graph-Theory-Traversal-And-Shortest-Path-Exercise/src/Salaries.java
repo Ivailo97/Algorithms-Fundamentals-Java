@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//TODO : FIXME
 public class Salaries {
 
     public static List<List<Integer>> graph = new ArrayList<>();
 
-    public static int[] salaries;
-
-    public static int[] managersCount;
+    public static long[] salaries;
 
     public static boolean[] visited;
 
@@ -22,9 +19,10 @@ public class Salaries {
 
         int employees = Integer.parseInt(reader.readLine());
 
-        salaries = new int[employees];
+        salaries = new long[employees];
         visited = new boolean[employees];
-        managersCount = new int[employees];
+
+        int[] managersCount = new int[employees];
 
         for (int i = 0; i < employees; i++) {
 
@@ -55,24 +53,24 @@ public class Salaries {
             dfs(source);
         }
 
-        int sum = Arrays.stream(salaries).sum();
+        long sum = Arrays.stream(salaries).sum();
 
         System.out.println(sum);
     }
 
-    private static void dfs(int vertex) {
+    private static void dfs(int node) {
 
-        if (visited[vertex]) {
+        if (visited[node]) {
             return;
         }
 
-        visited[vertex] = true;
+        visited[node] = true;
 
-        for (Integer child : graph.get(vertex)) {
+        for (Integer child : graph.get(node)) {
             dfs(child);
         }
 
-        int sum = graph.get(vertex).stream().mapToInt(v -> salaries[v]).sum();
-        salaries[vertex] = sum == 0 ? 1 : sum;
+        long sum = graph.get(node).stream().mapToLong(c -> salaries[c]).sum();
+        salaries[node] = sum == 0 ? 1 : sum;
     }
 }
